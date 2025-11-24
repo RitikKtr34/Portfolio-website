@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ritik Katiyar | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --bg-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-strong: #0ea5e9;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --text-strong: #f9fafb;
+      --danger: #f97373;
+      --radius-lg: 20px;
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.7);
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      background: linear-gradient(
+          135deg,
+          rgba(148, 163, 184, 0.1),
+          rgba(15, 23, 42, 0.9)
+        ),
+        #020617;
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      overflow: hidden;
+      backdrop-filter: blur(22px);
+    }
+
+    @media (max-width: 840px) {
+      body {
+        padding: 1.25rem;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      }
+    }
+
+    .sidebar {
+      background: radial-gradient(circle at top left, #1e293b, #020617 60%);
+      padding: 1.75rem 1.75rem 1.85rem;
+      border-right: 1px solid rgba(148, 163, 184, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avatar-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 180deg,
+        #38bdf8,
+        #a855f7,
+        #f97316,
+        #38bdf8
+      );
+      padding: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at top, #111827, #020617 55%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .avatar-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      display: block;
+    }
+
+    .headline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .headline-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-strong);
+      letter-spacing: 0.03em;
+    }
+
+    .headline-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-strong);
+    }
+
+    .headline-tagline {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 0.2rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.55rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+    }
+
+    .pill--accent {
+      border-color: rgba(56, 189, 248, 0.7);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .contact-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #64748b;
+    }
+
+    .contact-value a,
+    .contact-value {
+      color: var(--text-main);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-value a:hover {
+      color: var(--accent);
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .social-link {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      text-decoration: none;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 23, 42, 0.8);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background var(--transition-fast),
+        color var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .social-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 189, 248, 0.7);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .resume-button {
+      margin-top: 0.7rem;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 0.7rem 1rem;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      color: #0b1120;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      box-shadow: 0 15px 30px rgba(56, 189, 248, 0.4);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+    }
+
+    .resume-button span {
+      font-size: 1rem;
+    }
+
+    .resume-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 22px 45px rgba(56, 189, 248, 0.55);
+    }
+
+    .badge-strip {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .badge {
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.55);
+      color: #94a3b8;
+    }
+
+    .content {
+      padding: 1.75rem 2rem 1.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      max-height: 90vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 840px) {
+      .content {
+        max-height: none;
+        padding: 1.4rem 1.4rem 1.6rem;
+      }
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .top-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .top-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+    }
+
+    .top-heading {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--text-strong);
+    }
+
+    .top-subtext {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      max-width: 420px;
+    }
+
+    .top-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #cbd5f5;
+    }
+
+    .chip--accent {
+      border-color: rgba(56, 189, 248, 0.7);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .section {
+      background: radial-gradient(circle at top left, #0f172a, #020617 70%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 1.1rem 1.15rem 1.1rem;
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+      gap: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .section-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: #94a3b8;
+    }
+
+    .section-body {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .section-body p + p {
+      margin-top: 0.6rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .skill-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .skill-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .skill-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.35rem;
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 0.75rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-chip-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-chip {
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .project-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #94a3b8;
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.2rem;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: #c7d2fe;
+    }
+
+    .project-link {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .project-link span {
+      font-size: 0.95em;
+    }
+
+    .project-orb {
+      position: absolute;
+      right: -35px;
+      top: -35px;
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.2rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    .timeline-marker {
+      position: relative;
+      padding-top: 0.15rem;
+    }
+
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 4px;
+      top: 12px;
+      bottom: -0.7rem;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(148, 163, 184, 0.8), transparent);
+    }
+
+    .timeline-content {
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.6rem 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .timeline-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .timeline-bullets {
+      margin-top: 0.2rem;
+      padding-left: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-main);
+    }
+
+    .timeline-bullets li + li {
+      margin-top: 0.1rem;
+    }
+
+    .contact-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.35rem;
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    .contact-highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact-cta-row {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn-ghost,
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.86rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-main);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: var(--accent-soft);
+      border-color: rgba(56, 189, 248, 0.8);
+      color: var(--accent-strong);
+    }
+
+    .btn-ghost:hover,
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.7);
+      border-color: rgba(56, 189, 248, 0.8);
+      color: var(--accent-strong);
+    }
+
+    .btn-primary:hover {
+      background: rgba(56, 189, 248, 0.22);
+    }
+
+    .muted {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="avatar-wrapper">
+        <div class="avatar-circle">
+          <div class="avatar-inner">
+            <img src="" alt="Ritik Katiyar" />
+          </div>
+        </div>
+        <div class="headline">
+          <div class="headline-name">Ritik Katiyar</div>
+          <div class="headline-title">Frontend Developer · CSE Undergrad</div>
+          <div class="headline-tagline">
+            CSE (B.Tech) student at NIT Jalandhar (Batch 2025–2029), crafting modern web UIs
+            with clean code and a creative mindset.
+          </div>
+          <div class="pill-row">
+            <span class="pill pill--accent">Open to Internships</span>
+            <span class="pill">Frontend · Web & App</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Contact</div>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">
+              <a href="mailto:ritikkatiyar144@gmail.com">ritikkatiyar144@gmail.com</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            <span class="contact-value">NIT Jalandhar · Punjab, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Online</div>
+        <div class="social-row">
+          <a href="https://github.com/RitikKtr34" target="_blank" class="social-link"
+            ><span class="social-dot"></span><span>GitHub</span></a
+          >
+          <a
+            href="https://www.linkedin.com/in/ritik-katiyar-761636385/"
+            target="_blank"
+            class="social-link"
+            ><span class="social-dot"></span><span>LinkedIn</span></a
+          >
+          <a href="https://ritikktr34.github.io" target="_blank" class="social-link"
+            ><span class="social-dot"></span><span>Portfolio</span></a
+          >
+        </div>
+      </div>
+
+      <a href="Ritik-Katiyar-Resume.pdf" class="resume-button" download>
+        <span>⬇</span>
+        <span>Download Résumé (PDF)</span>
+      </a>
+
+      <div class="badge-strip">
+        <span class="badge">HTML · CSS · JavaScript</span>
+        <span class="badge">React · Responsive UI</span>
+        <span class="badge">C++ · DSA</span>
+        <span class="badge">Java · Python</span>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <!-- TOP SECTION -->
+      <div class="top-row">
+        <div class="top-title">
+          <span class="top-eyebrow">Modern Developer Portfolio</span>
+          <h1 class="top-heading">Building interfaces that feel fast, clean & human.</h1>
+          <p class="top-subtext">
+            I’m Ritik, a CSE (B.Tech) student at NIT Jalandhar (2025–2029) and a frontend
+            developer who loves turning ideas into pixel-perfect, responsive experiences.
+            When I’m not coding, I'm usually playing or watching cricket.
+          </p>
+        </div>
+
+        <div class="top-chips">
+          <span class="chip chip--accent">CSE @ NIT Jalandhar</span>
+          <span class="chip">Frontend Developer</span>
+          <span class="chip">Cricket & Movies Enthusiast</span>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="section-header">
+          <h2 class="section-title">About</h2>
+          <span class="section-pill">01 / Overview</span>
+        </div>
+        <div class="section-body">
+          <p>
+            I’m a <strong>frontend developer and CSE undergrad</strong> focused on building
+            modern, responsive web applications.
+          </p>
+          <p class="muted">
+            My current focus areas are
+            <strong>HTML, CSS, JavaScript, React</strong> and strong CS fundamentals.
+          </p>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+          <span class="section-pill">02 / Stack</span>
+        </div>
+        <div class="section-body">
+          <div class="skills-grid">
+
+            <div class="skill-card">
+              <div class="skill-title">Core Frontend</div>
+              <div class="skill-tags">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-title">Frameworks</div>
+              <div class="skill-tags">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Tailwind</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-title">Programming</div>
+              <div class="skill-tags">
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Python</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-title">Tools</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">VS Code</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+          <span class="section-pill">03 / Selected Work</span>
+        </div>
+        <div class="section-body">
+
+          <div class="projects-grid">
+
+            <article class="project-card">
+              <div class="project-orb"></div>
+              <div class="project-chip-row">
+                <span class="project-chip">Web App</span>
+                <span class="project-pill">2024</span>
+              </div>
+              <h3 class="project-title">CampusConnect – Student Portal</h3>
+              <p class="project-desc">Student dashboard UI for announcements & events.</p>
+              <div class="project-tags">
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-orb"></div>
+              <div class="project-chip-row">
+                <span class="project-chip">Frontend</span>
+                <span class="project-pill">2024</span>
+              </div>
+              <h3 class="project-title">MovieScope – Movie Explorer</h3>
+              <p class="project-desc">
+                A movie browser UI using public APIs.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">API</span>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+          <span class="section-pill">04 / Timeline</span>
+        </div>
+
+        <div class="section-body">
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Frontend Developer — Personal Projects</div>
+                <div class="timeline-meta">2024 – Present</div>
+                <ul class="timeline-bullets">
+                  <li>Built responsive UIs and dashboards.</li>
+                  <li>Practiced reusable component patterns.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="section" id="education">
+        <div class="section-header">
+          <h2 class="section-title">Education</h2>
+          <span class="section-pill">05 / Academics</span>
+        </div>
+
+        <div class="section-body">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker"><div class="timeline-dot"></div></div>
+              <div class="timeline-content">
+                <div class="timeline-title">B.Tech in CSE</div>
+                <div class="timeline-meta">2025 – 2029 • NIT Jalandhar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <span class="section-pill">06 / Let's Talk</span>
+        </div>
+        <div class="section-body">
+          <p>Email me at <strong class="contact-highlight">ritikkatiyar144@gmail.com</strong></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
